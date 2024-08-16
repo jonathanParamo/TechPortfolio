@@ -16,7 +16,7 @@
   }
 }
 
-body {
+/* body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -24,6 +24,21 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+} */
+
+html {
+  --background-color: #ffffff; /* Color claro por defecto */
+  --text-color: #000000; /* Color claro por defecto */
+}
+
+html.dark {
+  --background-color: #000000; /* Color oscuro */
+  --text-color: #ffffff; /* Color oscuro */
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 @layer utilities {
@@ -72,4 +87,28 @@ body {
 
 .w-calc-1 {
   width: calc(100% - 200px);
+}
+
+.dark {
+  --background-color: #000000;
+  --text-color: #ffffff;
+}
+
+:not(.dark) {
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+html.light {
+  background-color: var(--background-light);
+  color: var(--text-light);
+}
+
+html.dark {
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+}
+
+.container {
+  overflow: hidden; /* Evita el scroll extra */
 }

@@ -11,7 +11,7 @@ const Contact = () => {
       <div className="w-full absolute top-0 z-10">
         <Navbar />
       </div>
-      <main className="h-screen bg-white dark:bg-[#000000] pt-20 px-5 flex justify-center items-start overflow-auto">
+      <main className="md:h-auto bg-white dark:bg-[#000000] pt-12 px-5 flex justify-center items-start">
         <section className="w-10/12 mx-auto max-w-3xl bg-violet-300 dark:bg-[#f5f5f515] p-5 md:p-8 rounded-lg
           shadow-lg flex flex-col mb-4">
           <h1 className="text-lg md:text-3xl font-bold mb-3 md:mb-4 text-violet-900 dark:text-cyan-300">

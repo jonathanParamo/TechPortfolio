@@ -20,7 +20,7 @@ const About = () => {
       <div className="w-full absolute top-0 z-10">
         <Navbar />
       </div>
-      <main className="h-screen bg-[#f5f5f5] dark:bg-[#000000] pt-20 px-5 flex justify-center items-start overflow-auto">
+      <main className="md:h-screen bg-[#f5f5f5] dark:bg-[#000000] pt-12 px-5 flex justify-center items-start overflow-auto">
         <section className="container w-10/12 mx-auto max-w-3xl bg-violet-300 dark:bg-[#f5f5f515] p-5 md:p-8 rounded-lg shadow-lg flex flex-col mb-4 md:mb-0">
           <div className={`div1 ${isClient ? 'animate-slide-from-left' : ''} p-2 md:mt-2`}>
             <h1 className="text-lg md:text-3xl font-bold mb-2 md:mb-4 text-purple-800 dark:text-purple-200">

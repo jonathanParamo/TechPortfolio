@@ -17,8 +17,8 @@ const Experiences = () => {
         <Navbar />
       </div>
 
-      <main className="h-screen bg-[#f5f5f5] dark:bg-[#000000] pt-16 px-5 flex justify-center items-start overflow-auto">
-          <div className="mt-4 w-10/12">
+      <main className="h-screen bg-[#f5f5f5] dark:bg-[#000000] pt-12 px-5 flex justify-center items-start overflow-auto">
+        <div className=" w-10/12">
           <section className="container w-full md:h-[532px] mx-auto max-w-3xl bg-violet-300 dark:bg-[#f5f5f515]
             p-5 md:p-8 rounded-lg shadow-lg flex flex-col mb-4 md:mb-0">
             <h1
