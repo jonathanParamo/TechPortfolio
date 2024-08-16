@@ -19,6 +19,7 @@ import {
 } from "../../public/assets";
 
 export const navLinks = [
+  { href: '/', label: 'Home' },
   { href: '/pages/contact', label: 'Contact' },
   { href: '/pages/about', label: 'About' },
   { href: '/pages/experience', label: 'Experience' },
