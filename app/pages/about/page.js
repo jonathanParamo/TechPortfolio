@@ -3,6 +3,7 @@
 import Head from 'next/head';
 import Navbar from '@/app/components/Navbar';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 const About = () => {
   const [isClient, setIsClient] = useState(false);
@@ -29,7 +30,13 @@ const About = () => {
             <p className="text-purple-800 hover:text-purple-500 dark:text-purple-100 mb-2 md:mb-6 hover:dark:text-purple-200">
               I’m Jonathan, a passionate developer with expertise in JavaScript, React, and various web technologies.
               My mission is to deliver high-quality products and solutions that exceed your expectations.
-              I specialize in creating dynamic and engaging web applications using technologies such as:
+              I specialize in creating dynamic and engaging web applications using technologies such &nbsp;
+              <Link
+                href="/pages/technologies"
+                className="text-blue-600 hover:text-blue-800 dark:text-blue-400 hover:dark:text-blue-200"
+              >
+                as.
+              </Link>
             </p>
           </div>
 
