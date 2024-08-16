@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { navLinks, socialLinks } from '../constants';
 import Image from 'next/image';
-import ThemeProvider from './ThemeProvider';
+import { ThemeProvider } from './ThemeProvider';
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
