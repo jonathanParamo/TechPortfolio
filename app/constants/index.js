@@ -74,5 +74,18 @@ export const technologies = [
   },
 ];
 
-
+export const experiences = [
+  {
+    title: "React.js Developer",
+    company_name: "BuffetShexShop",
+    iconBg: "#383E56",
+    date: "August 2022 - at the moment",
+    points: [
+      "Developing and maintaining web applications using React.js and other related technologies.",
+      "To collaborate in a work team to create high-quality products.",
+      "Implementing responsive design and ensuring cross-browser compatibility.",
+      "Participating in code reviews and providing constructive feedback to other developers.",
+    ],
+  },
+];
 
