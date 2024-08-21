@@ -6,9 +6,6 @@ import Image from "next/image";
 const TechnologyList = ({ technologies }) => {
   return (
     <div className="bg-transparent rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-4 md:mb-6 text-purple-900 dark:text-cyan-500 w-full text-center">
-        Technologies I Work With
-      </h2>
       <div className="technology-list w-full flex flex-wrap justify-center gap-6">
         {technologies.map((tech) => (
           <div
