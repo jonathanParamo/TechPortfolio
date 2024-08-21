@@ -94,7 +94,7 @@ function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               className="flex justify-center items-center w-10 h-10 bg-purple-700 hover:bg-purple-950
-              dark:bg-[#f5f5f530] rounded-full text-white hover:dark:bg-purple-800"
+              dark:bg-[#f5f5f530] rounded-full text-white hover:dark:bg-cyan-800"
             >
               {social.icon}
             </a>

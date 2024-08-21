@@ -11,9 +11,8 @@ const Contact = () => {
       <div className="w-full absolute top-0 z-10">
         <Navbar />
       </div>
-      <main className="md:h-auto bg-white dark:bg-[#000000] pt-12 px-5 flex justify-center items-start">
-        <section className="w-10/12 mx-auto max-w-3xl bg-violet-300 dark:bg-[#f5f5f515] p-5 md:p-8 rounded-lg
-          shadow-lg flex flex-col mb-4">
+      <main className="min-h-screen bg-white dark:bg-[#000000] pt-12 px-5 flex justify-center items-start">
+        <section className="w-full max-w-6xl h-auto lg:h-[562px] mx-auto bg-violet-300 dark:bg-[#f5f5f515] p-5 md:p-8 rounded-lg shadow-lg flex flex-col mb-4">
           <h1 className="text-lg md:text-3xl font-bold mb-3 md:mb-4 text-violet-900 dark:text-cyan-300">
             Contact Us
           </h1>
@@ -33,7 +32,7 @@ const Contact = () => {
                     name="name"
                     placeholder="Name"
                     required
-                    className="mt-1 block w-full border border-none rounded-md shadow-sm p-2 bg-pink-50 text-violet-700 dark:text-cyan-400 outline-none focus:border-none dark:bg-[#f5f5f525]"
+                    className="mt-1 block w-full border-none rounded-md shadow-sm p-2 bg-pink-50 text-violet-700 dark:text-cyan-400 outline-none dark:bg-[#f5f5f525]"
                   />
                 </div>
                 <div>
@@ -43,7 +42,7 @@ const Contact = () => {
                     id="email"
                     name="email"
                     required
-                    className="mt-1 block w-full border border-none rounded-md shadow-sm p-2 bg-pink-50 text-violet-700 dark:text-cyan-400 outline-none focus:border-none dark:bg-[#f5f5f525]"
+                    className="mt-1 block w-full border-none rounded-md shadow-sm p-2 bg-pink-50 text-violet-700 dark:text-cyan-400 outline-none dark:bg-[#f5f5f525]"
                   />
                 </div>
                 <div>
@@ -53,7 +52,7 @@ const Contact = () => {
                     name="message"
                     required
                     rows="4"
-                    className="mt-1 block w-full rounded-md shadow-sm p-2 dark:bg-[#f5f5f525] text-violet-700 dark:text-cyan-400 border border-none rounded-md shadow-sm bg-pink-50 outline-none focus:border-none"
+                    className="mt-1 block w-full rounded-md shadow-sm p-2 dark:bg-[#f5f5f525] text-violet-700 dark:text-cyan-400 border-none bg-pink-50 outline-none"
                   />
                 </div>
                 <button
