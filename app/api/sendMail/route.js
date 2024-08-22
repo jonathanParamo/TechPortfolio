@@ -2,6 +2,7 @@ import nodemailer from 'nodemailer';
 
 export async function POST(req) {
   const { name, email, message } = await req.json();
+  console.log('Received data:', { name, email, message });
 
   const transporter = nodemailer.createTransport({
     service: 'outlook',
