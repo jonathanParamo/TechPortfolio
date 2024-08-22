@@ -38,6 +38,10 @@ const Contact = () => {
   const [statusType, setStatusType] = useState("success");
   const [showNotification, setShowNotification] = useState(true);
 
+  const API_URL = process.env.NODE_ENV === 'production'
+  ? 'https://portfolio-jonathan-g-p.vercel.app/api'
+  : 'http://localhost:3000/api';
+
   const validationEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const handleSubmit = async(e) => {
@@ -51,7 +55,7 @@ const Contact = () => {
     }
 
     try {
-      const response = await fetch("/api/sendMail", {
+      const response = await fetch(`${API_URL}/sendMail`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
