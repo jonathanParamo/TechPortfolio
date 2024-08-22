@@ -39,10 +39,13 @@ const Contact = () => {
   const [showNotification, setShowNotification] = useState(true);
 
   const validationEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const user = process.env.NEXT_PUBLIC_OUTLOOK_USER
+  const ot = process.env.NEXT_PUBLIC_OUTLOOK_PASS
+  console.log(user, ot);
+
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-
 
     if(!validationEmail.test(email)) {
       setStatusType("error");
@@ -52,7 +55,7 @@ const Contact = () => {
     }
 
     try {
-      const response = await fetch(`api/sendMail`, {
+      const response = await fetch("/api/sendMail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

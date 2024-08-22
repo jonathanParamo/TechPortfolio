@@ -1,6 +1,9 @@
 import nodemailer from 'nodemailer';
 
 export async function POST(req) {
+  const user = process.env.NEXT_PUBLIC_OUTLOOK_USER
+  const ot = process.env.NEXT_PUBLIC_OUTLOOK_PASS
+  console.log(user, ot);
   const { name, email, message } = await req.json();
 
   const transporter = nodemailer.createTransport({
