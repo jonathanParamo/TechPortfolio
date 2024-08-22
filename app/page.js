@@ -27,7 +27,7 @@ const Home = () => {
               Welcome to My Portfolio
             </h1>
             <p className="text-purple-900 hover:text-purple-950 dark:text-cyan-400 mb-2 md:mb-6 hover:dark:text-cyan-300">
-              I’m Jonathan, a versatile developer with extensive experience in working with a range of web technologies. Over the years, I"ve been involved in various projects where I"ve honed my skills in JavaScript, React, and more. My work is driven by a passion for delivering top-tier, innovative solutions that push the boundaries of web development.
+              I’m Jonathan, a versatile developer with extensive experience in working with a range of web technologies. Over the years, I&apos;ve been involved in various projects where I&apos;ve honed my skills in JavaScript, React, and more. My work is driven by a passion for delivering top-tier, innovative solutions that push the boundaries of web development.
             </p>
           </div>
 
