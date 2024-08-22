@@ -6,14 +6,14 @@ export async function POST(req) {
   const transporter = nodemailer.createTransport({
     service: 'outlook',
     auth: {
-      user: process.env.OUTLOOK_USER,
-      pass: process.env.OUTLOOK_PASS,
+      user: process.env.NEXT_PUBLIC_OUTLOOK_USER,
+      pass: process.env.NEXT_PUBLIC_OUTLOOK_PASS,
     },
   });
 
   const mailOptions = {
-    from: process.env.OUTLOOK_USER,
-    to: process.env.RECEIVER_EMAIL,
+    from: process.env.NEXT_PUBLIC_OUTLOOK_USER,
+    to: process.env.NEXT_PUBLIC_RECEIVER_EMAIL,
     subject: `Contact Form Submission from ${name} (${email})`,
     text: message,
     html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Message:</strong><br>${message}</p>`,

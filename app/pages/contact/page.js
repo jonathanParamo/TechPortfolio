@@ -38,12 +38,11 @@ const Contact = () => {
   const [statusType, setStatusType] = useState("success");
   const [showNotification, setShowNotification] = useState(true);
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
   const validationEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+
 
     if(!validationEmail.test(email)) {
       setStatusType("error");
@@ -53,7 +52,7 @@ const Contact = () => {
     }
 
     try {
-      const response = await fetch(`${API_URL}/sendMail`, {
+      const response = await fetch(`api/sendMail`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
