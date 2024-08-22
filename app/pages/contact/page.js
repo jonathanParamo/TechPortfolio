@@ -68,6 +68,7 @@ const Contact = () => {
         setEmail("");
         setMessage("");
       } else {
+        console.log(response);
         setStatusType("error");
         setStatus("Error sending email");
         setShowNotification(true);

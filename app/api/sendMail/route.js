@@ -1,9 +1,6 @@
 import nodemailer from 'nodemailer';
 
 export async function POST(req) {
-  const user = process.env.NEXT_PUBLIC_OUTLOOK_USER
-  const ot = process.env.NEXT_PUBLIC_OUTLOOK_PASS
-  console.log(user, ot, "desde post");
   const { name, email, message } = await req.json();
 
   const transporter = nodemailer.createTransport({
@@ -26,6 +23,6 @@ export async function POST(req) {
     await transporter.sendMail(mailOptions);
     return new Response(JSON.stringify({ message: 'Mail sent successfully' }), { status: 200 });
   } catch (error) {
-    return new Response(JSON.stringify({ error: 'Error sending email' }), { status: 500 });
+    return new Response(JSON.stringify({ error: error }), { status: 500 });
   }
 }
