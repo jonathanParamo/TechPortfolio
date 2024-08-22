@@ -3,30 +3,25 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import { FaSun, FaMoon } from 'react-icons/fa';
 
-// Crear un contexto para el tema
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(null);
 
   useEffect(() => {
-    // Leer el tema almacenado en localStorage o determinar el tema preferido
     const storedTheme = localStorage.getItem('theme');
     const preferredTheme = storedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 
-    // Establecer el tema y aplicarlo al documento
     setTheme(preferredTheme);
     document.documentElement.classList.toggle('dark', preferredTheme === 'dark');
-  }, []); // Solo se ejecuta una vez después del primer renderizado
+  }, []);
 
   useEffect(() => {
-    if (theme) { // Solo aplica el tema si no es null
-      // Aplica el tema al documento
+    if (theme) {
       document.documentElement.classList.toggle('dark', theme === 'dark');
-      // Guarda el tema en localStorage
       localStorage.setItem('theme', theme);
     }
-  }, [theme]); // Solo se ejecuta cuando `theme` cambia
+  }, [theme]);
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
@@ -54,5 +49,4 @@ export const ThemeProvider = ({ children }) => {
   );
 };
 
-// Hook para acceder al tema en cualquier componente
 export const useTheme = () => useContext(ThemeContext);
