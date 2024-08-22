@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { technologies } from "../constants";
 
 const WithTechnologies = (WrappedComponent) => {
@@ -11,3 +12,4 @@ const WithTechnologies = (WrappedComponent) => {
 };
 
 export default WithTechnologies;
+/* eslint-enable react/display-name */
