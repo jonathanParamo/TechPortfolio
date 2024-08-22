@@ -38,9 +38,7 @@ const Contact = () => {
   const [statusType, setStatusType] = useState("success");
   const [showNotification, setShowNotification] = useState(true);
 
-  const API_URL = process.env.NODE_ENV === 'production'
-  ? 'https://portfolio-jonathan-g-p.vercel.app/api'
-  : 'http://localhost:3000/api';
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const validationEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
