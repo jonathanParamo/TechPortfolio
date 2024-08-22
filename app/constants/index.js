@@ -28,9 +28,9 @@ export const navLinks = [
 ];
 
 export const socialLinks = [
-  { href: 'https://linkedin.com', icon: <FaLinkedin /> },
-  { href: 'https://twitter.com', icon: <FaXTwitter /> },
-  { href: 'https://github.com', icon: <FaGithub /> },
+  { href: 'https://www.linkedin.com/in/jonathan-guaydia-paramo/', icon: <FaLinkedin /> },
+  // { href: 'https://twitter.com', icon: <FaXTwitter /> },
+  { href: 'https://github.com/jonathanParamo', icon: <FaGithub /> },
 ];
 
 export const technologies = [
