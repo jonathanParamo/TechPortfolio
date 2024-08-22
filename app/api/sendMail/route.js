@@ -3,21 +3,20 @@ import nodemailer from 'nodemailer';
 export async function POST(req) {
   console.log('Received request:', req);
   try {
-    // Agregar console.log para depuración
 
     const { name, email, message } = await req.json();
     console.log('Parsed data:', { name, email, message });
 
     const transporter = nodemailer.createTransport({
-      service: 'outlook',
+      service: 'gmail',
       auth: {
-        user: process.env.NEXT_PUBLIC_OUTLOOK_USER,
-        pass: process.env.NEXT_PUBLIC_OUTLOOK_PASS,
+        user: process.env.NEXT_PUBLIC_GMAIL_USER,
+        pass: process.env.NEXT_PUBLIC_GMAIL_PASS,
       },
     });
 
     const mailOptions = {
-      from: process.env.NEXT_PUBLIC_OUTLOOK_USER,
+      from: process.env.NEXT_PUBLIC_GMAIL_USER,
       to: process.env.NEXT_PUBLIC_RECEIVER_EMAIL,
       subject: `Contact Form Submission from ${name} (${email})`,
       text: message,
@@ -30,7 +29,6 @@ export async function POST(req) {
 
     return new Response(JSON.stringify({ message: 'Mail sent successfully' }), { status: 200 });
   } catch (error) {
-    // Agregar console.error para depuración
     console.error('Error sending email:', error);
     return new Response(JSON.stringify({ error: 'Error sending email' }), { status: 500 });
   }
