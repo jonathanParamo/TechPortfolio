@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import { technologies } from "../constants";
+import { technologies } from '../constants';
 
 const WithTechnologies = (WrappedComponent) => {
   const HOC = (props) => {
