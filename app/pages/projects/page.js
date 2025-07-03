@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import { projects } from "@/app/constants";
-import { useEffect, useState } from "react";
-import { FaGithub } from "react-icons/fa";
-import Navbar from "@/app/components/Navbar";
-import Image from "next/image";
+import { projects } from '@/app/constants';
+import { useEffect, useState } from 'react';
+import { FaGithub } from 'react-icons/fa';
+import Navbar from '@/app/components/Navbar';
+import Image from 'next/image';
 
 const Projects = () => {
   const [isClient, setIsClient] = useState(false);
@@ -21,7 +21,7 @@ const Projects = () => {
 
       <main className="h-auto min-h-screen bg-[#f5f5f5] dark:bg-[#000000] pt-12 px-5 flex justify-center items-start overflow-auto">
         <div className="w-full max-w-6xl">
-          <section className="container h-auto lg:h-[562px] mx-auto bg-violet-300 dark:bg-[#f5f5f515] p-5 md:p-8 rounded-lg shadow-lg flex flex-col mb-4 md:mb-0">
+          <section className="container h-auto mx-auto bg-violet-300 dark:bg-[#f5f5f515] p-5 md:p-8 rounded-lg shadow-lg flex flex-col mb-4 md:mb-0 mt-8">
             <h1
               className={`text-2xl md:text-3xl font-bold text-center text-violet-900 dark:text-cyan-400 p-1 md:p-2 ${isClient ? 'animate-slide-from-right' : ''}`}
             >
@@ -32,53 +32,65 @@ const Projects = () => {
                 {projects.map((project, index) => (
                   <li
                     key={index}
-                    className={`relative w-full h-72 md:h-80 flex flex-col items-center border border-purple-700 dark:border-cyan-400 border-2 py-3 px-2 rounded bg-transparent shadow-lg transform transition-transform duration-300 hover:scale-105 ${isClient ? 'animate-slide-from-left' : ''}`}
+                    className={`relative w-full flex flex-col items-center border border-gray-300 dark:border-cyan-400 rounded-lg bg-white dark:bg-[#111] shadow-md hover:shadow-xl transition-transform transform hover:scale-[1.02] p-4`}
                   >
-                    <a
-                      href={project.deployed_app_link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full h-full flex flex-col items-center"
-                    >
-                      <div className="relative w-full h-32">
-                        <Image
-                          src={project.image}
-                          alt={project.name}
-                          fill
-                          className="object-cover rounded"
-                        />
-                        <a
-                          href={project.source_code_link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="absolute top-2 right-2 text-white dark:text-cyan-950 dark:bg-white bg-purple-900 p-1 rounded-full
-                          hover:bg-white hover:text-purple-900 transition-colors dark:hover:bg-cyan-950 dark:hover:text-white duration-300"
-                        >
-                          <FaGithub size={24} />
-                        </a>
-                      </div>
-                      <h2 className="w-full text-center my-3 overflow-hidden text-violet-900 dark:text-cyan-400">
-                        {project.name}
-                      </h2>
-                      <p className="hidden text-center text-sm md:block mb-3 h-10 overflow-hidden px-2 text-violet-900 dark:text-cyan-400">
-                        {project.description}
-                      </p>
-                    </a>
-                    <div className="w-full flex justify-around items-center mt-2">
-                      <p
+                    <Image
+                      src={project.image}
+                      alt={project.name}
+                      width={500}
+                      height={300}
+                      className="rounded-md object-cover w-full h-32"
+                    />
+
+                    <h2 className="text-lg font-semibold text-center mt-4 text-gray-800 dark:text-cyan-400">
+                      {project.name}
+                    </h2>
+
+                    <p className="text-sm text-center mt-2 text-gray-700 dark:text-gray-300 line-clamp-3">
+                      {project.description}
+                    </p>
+
+                    <div className="flex justify-center gap-3 mt-4">
+                      <a
                         href={project.deployed_app_link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-1 text-white px-2 py-1 border bg-purple-800 dark:border-white rounded dark:bg-transparent dark:hover:bg-[#f5f5f525] transition-colors dark:hover:text-white hover:bg-transparent hover:text-purple-800 border-purple-800 dark:hover:border-transparent duration-300"
+                        className="bg-purple-700 text-white dark:bg-cyan-500 dark:text-black px-3 py-1 rounded hover:bg-purple-900 dark:hover:bg-cyan-700 transition"
                       >
                         Live Demo
-                      </p>
+                      </a>
                     </div>
-                    <div className="flex mt-2 flex-wrap justify-center">
-                      {project.tags.map((tag, index) => (
+                    <div className="w-full flex justify-center gap-2 mt-2">
+                      {project.source_code_link && (
+                        <a
+                          href={project.frontend_repo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center text-sm border text-white bg-pink-500 dark:bg-black hover:bg-pink-400 dark:border-purple-500 dark:text-purple-500 px-2 py-1 rounded hover:border-purple-400 dark:text-purple-400 transition"
+                        >
+                          <FaGithub className="mr-1" />
+                          Frontend
+                        </a>
+                      )}
+
+                      {project.backend_repo && (
+                        <a
+                          href={project.backend_repo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center border border-solid text-sm text-black border-gray-500 dark:text-white px-2 py-1 rounded dark:hover:border-[#f5f5f5] hover:border-black hover:bg-black hover:text-white transition"
+                        >
+                          <FaGithub className="mr-1" />
+                          backend
+                        </a>
+                      )}
+                    </div>
+
+                    <div className="flex flex-wrap justify-center gap-2 mt-3">
+                      {project.tags.map((tag, i) => (
                         <span
-                          key={index}
-                          className={`text-xs px-2 py-1 mr-1 rounded ${tag.color}`}
+                          key={i}
+                          className={`text-xs px-2 py-1 rounded-full ${tag.color} bg-opacity-20 border border-transparent`}
                         >
                           {tag.name}
                         </span>
@@ -93,6 +105,6 @@ const Projects = () => {
       </main>
     </div>
   );
-}
+};
 
 export default Projects;

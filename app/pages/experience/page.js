@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import Navbar from "@/app/components/Navbar";
-import { experiences } from "@/app/constants";
-import { useEffect, useState } from "react";
+import Navbar from '@/app/components/Navbar';
+import { experiences } from '@/app/constants';
+import { useEffect, useState } from 'react';
 
 const Experiences = () => {
   const [isClient, setIsClient] = useState(false);
@@ -18,8 +18,8 @@ const Experiences = () => {
       </div>
 
       <main className="h-auto min-h-screen bg-[#f5f5f5] dark:bg-[#000000] pt-12 px-5 flex justify-center items-start overflow-auto">
-        <div className="w-full max-w-6xl">
-          <section className="container h-auto lg:h-[562px] mx-auto bg-violet-300 dark:bg-[#f5f5f515] p-5 md:p-8 rounded-lg shadow-lg flex flex-col mb-4 md:mb-0">
+        <div className="w-full max-w-6xl mb-12">
+          <section className="container h-auto mx-auto bg-violet-300 dark:bg-[#f5f5f515] p-5 md:p-8 rounded-lg shadow-lg flex flex-col mb-8 md:mb-0 mt-8">
             <h1
               className={`text-2xl md:text-3xl font-bold text-center text-violet-900 dark:text-cyan-400
                 ${isClient ? 'animate-slide-from-right' : ''} p-1 md:p-2`}
@@ -28,13 +28,20 @@ const Experiences = () => {
             </h1>
             <div className="space-y-4 text-violet-900 dark:text-cyan-400">
               {experiences?.map(({ title, company_name, date, points }) => (
-                <section key={title} className="bg-transparent p-4 rounded-lg shadow-sm">
-                  <div className={`p-2 ${isClient ? 'animate-slide-from-right' : ''}`}>
+                <section
+                  key={title}
+                  className="bg-transparent p-4 rounded-lg shadow-sm"
+                >
+                  <div
+                    className={`p-2 ${isClient ? 'animate-slide-from-right' : ''}`}
+                  >
                     <h2 className="text-lg font-semibold">{title}</h2>
                     <p className="text-lg font-medium">{company_name}</p>
                     <p className="text-lg">{date}</p>
                   </div>
-                  <div className={`p-2 ${isClient ? 'animate-slide-from-left' : ''}`}>
+                  <div
+                    className={`p-2 ${isClient ? 'animate-slide-from-left' : ''}`}
+                  >
                     <ul className="list-disc list-inside space-y-2 text-lg">
                       {points.map((point, index) => (
                         <li key={index}>{point}</li>
@@ -49,6 +56,6 @@ const Experiences = () => {
       </main>
     </div>
   );
-}
+};
 
 export default Experiences;

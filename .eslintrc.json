@@ -1,7 +1,25 @@
+// {
+//   "rules": {
+//     "react/display-name": "off",
+//     "react/no-unescaped-entities": "off"
+//   },
+//   "extends": "next/core-web-vitals"
+// }
+
 {
+  "extends": ["next/core-web-vitals", "plugin:prettier/recommended"],
+  "plugins": ["prettier"],
   "rules": {
     "react/display-name": "off",
-    "react/no-unescaped-entities": "off"
-  },
-  "extends": "next/core-web-vitals"
+    "react/no-unescaped-entities": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "semi": true,
+        "singleQuote": true,
+        "tabWidth": 2,
+        "trailingComma": "es5"
+      }
+    ]
+  }
 }

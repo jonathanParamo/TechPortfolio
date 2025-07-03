@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { navLinks, socialLinks } from '../constants';
 import Image from 'next/image';
 import { ThemeProvider } from './ThemeProvider';
+import { FaReact, FaNodeJs, FaGitAlt } from 'react-icons/fa';
+import { SiTailwindcss, SiNextdotjs, SiMongodb, SiRedux } from 'react-icons/si';
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,9 +15,12 @@ function Navbar() {
     <nav className="p-4 bg-purple-800 dark:bg-[#000000] text-black dark:text-white">
       <div className="container mx-auto flex justify-between items-center ">
         <div className="text-white text-xl font-bold">
-          <Link href="/" className='flex text-lg h-8 text-[22px] hover:dark:text-cyan-500'>
+          <Link
+            href="/"
+            className="flex text-lg h-8 text-[22px] hover:dark:text-cyan-500"
+          >
             <Image src="/assets/logo.svg" width={25} height={25} alt="logo" />
-            onathan
+            <span className="ml-2">onathan</span>
           </Link>
         </div>
         <div className="block md:hidden">
@@ -24,7 +29,12 @@ function Navbar() {
             className="text-white focus:outline-none"
           >
             {isMenuOpen ? (
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -33,7 +43,12 @@ function Navbar() {
                 />
               </svg>
             ) : (
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -75,8 +90,14 @@ function Navbar() {
         <div className="md:hidden absolute top-full left-0 w-full bg-purple-800 dark:bg-[#000000] z-50">
           <ul className="flex flex-col items-center space-y-2">
             {navLinks.map((link) => (
-              <li key={link.href} className="w-full py-2 pr-6 text-right hover:bg-[#f5f5f510]">
-                <Link href={link.href} className="text-white hover:text-red-50 hover:dark:text-cyan-500 block">
+              <li
+                key={link.href}
+                className="w-full py-2 pr-6 text-right hover:bg-[#f5f5f510]"
+              >
+                <Link
+                  href={link.href}
+                  className="text-white hover:text-red-50 hover:dark:text-cyan-500 block"
+                >
                   {link.label}
                 </Link>
               </li>
@@ -106,6 +127,16 @@ function Navbar() {
         <div className="flex flex flex-col space-y-3 ">
           <ThemeProvider />
         </div>
+      </div>
+
+      <div className="flex flex-wrap justify-center items-center gap-2 text-white mt-2">
+        <FaReact className="text-cyan-400 w-8 h-8" title="React.js" />
+        <SiNextdotjs className="text-white w-8 h-8" title="Next.js" />
+        <SiRedux className="text-purple-400 w-8 h-8" title="Redux Toolkit" />
+        <SiTailwindcss className="text-sky-400 w-8 h-8" title="Tailwind CSS" />
+        <SiMongodb className="text-green-400 w-8 h-8" title="MongoDB" />
+        <FaNodeJs className="text-lime-400 w-8 h-8" title="Node.js" />
+        <FaGitAlt className="text-orange-400 w-8 h-8" title="Git" />
       </div>
     </nav>
   );
