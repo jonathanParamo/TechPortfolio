@@ -24,6 +24,7 @@ import logothreejs from './tech/logothreejs.png';
 import myPhoto from './me/photo.png';
 import dev_navigate from './dev_navigate.png';
 import tech_shop from './tech_shop.png';
+import portfolioPhoto from './portfolioPhoto.png';
 
 export {
   logo,
@@ -51,4 +52,5 @@ export {
   myPhoto,
   dev_navigate,
   tech_shop,
+  portfolioPhoto,
 };
