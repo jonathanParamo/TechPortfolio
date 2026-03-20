@@ -12,9 +12,6 @@ const ParticleBackground = dynamic(
   { ssr: false }
 );
 
-/* ══════════════════════════════════════════════
-   SHADERS
-══════════════════════════════════════════════ */
 const dustVert = `attribute float aLife;attribute float aSize;attribute vec3 aColor;varying float vLife;varying vec3 vColor;void main(){vLife=aLife;vColor=aColor;vec4 mvp=modelViewMatrix*vec4(position,1.0);gl_PointSize=aSize*(400.0/-mvp.z);gl_Position=projectionMatrix*mvp;}`;
 const dustFrag = `varying float vLife;varying vec3 vColor;void main(){vec2 uv=gl_PointCoord-0.5;float d=length(uv);if(d>0.5)discard;float core=1.0-smoothstep(0.0,0.10,d);float mid=1.0-smoothstep(0.10,0.30,d);float halo=1.0-smoothstep(0.30,0.50,d);float a=(core*1.0+mid*0.65+halo*0.25)*vLife;gl_FragColor=vec4(vColor,a*0.92);}`;
 
@@ -170,13 +167,13 @@ function FloatingRock({ position, scale, rotSpeed, detail, phase, isDark }) {
         color={isDark ? '#16a8cc' : '#b0c7ff'}
         roughness={0.35}
         metalness={isDark ? 0.85 : 0.25}
-        emissive={isDark ? '#22056628' : '#7d1896a1'}
-        emissiveIntensity={isDark ? 2.0 : 0.8}
-        envMapIntensity={1.2}
+        emissive={isDark ? '#001840' : '#334499'}
+        emissiveIntensity={isDark ? 1.2 : 0.4}
       />
     </mesh>
   );
 }
+
 const ROCKS = [
   {
     position: [-5.8, 1.6, -3.0],
@@ -240,6 +237,7 @@ function CamCtrl() {
   });
   return null;
 }
+
 const SceneCanvas = dynamic(
   () =>
     Promise.resolve(function SC({ isDark }) {
@@ -252,13 +250,19 @@ const SceneCanvas = dynamic(
             position: 'fixed',
             inset: 0,
             pointerEvents: 'none',
-            zIndex: 0,
+            zIndex: -10,
+            isolation: 'isolate',
+            pointerEvents: 'none',
           }}
         >
           <Canvas
             camera={{ position: [0, 0, 10], fov: 58 }}
             gl={{ alpha: true, antialias: true }}
-            style={{ background: 'transparent' }}
+            style={{
+              pointerEvents: 'none',
+              position: 'absolute',
+              inset: 0,
+            }}
           >
             <CamCtrl />
             <ambientLight
@@ -300,9 +304,6 @@ const SceneCanvas = dynamic(
   { ssr: false }
 );
 
-/* ══════════════════════════════════════════════
-   NOTIFICATION
-══════════════════════════════════════════════ */
 function Notification({ status, type, onClose, isDark }) {
   useEffect(() => {
     if (status) {
@@ -321,7 +322,6 @@ function Notification({ status, type, onClose, isDark }) {
         transform: 'translateX(-50%)',
         padding: '14px 20px',
         borderRadius: 8,
-        zIndex: 9999,
         minWidth: 260,
         maxWidth: 400,
         textAlign: 'center',
@@ -333,12 +333,6 @@ function Notification({ status, type, onClose, isDark }) {
             ? 'rgba(230,242,255,0.97)'
             : 'rgba(255,235,235,0.97)',
         border: `1px solid ${ok ? (isDark ? 'rgba(0,130,255,0.7)' : 'rgba(0,80,200,0.5)') : isDark ? 'rgba(255,50,50,0.6)' : 'rgba(200,30,30,0.4)'}`,
-        boxShadow: ok
-          ? isDark
-            ? '0 0 24px rgba(0,110,255,0.35)'
-            : '0 4px 20px rgba(0,80,200,0.15)'
-          : '0 4px 20px rgba(200,0,0,0.2)',
-        backdropFilter: 'blur(14px)',
         animation: 'slideUp 0.35s ease',
       }}
     >
@@ -356,7 +350,6 @@ function Notification({ status, type, onClose, isDark }) {
             height: 7,
             borderRadius: '50%',
             background: ok ? (isDark ? '#0099ff' : '#0044cc') : '#ff3333',
-            boxShadow: `0 0 10px ${ok ? (isDark ? '#0099ff' : '#0044cc') : '#ff3333'}`,
           }}
         />
         <p
@@ -364,7 +357,6 @@ function Notification({ status, type, onClose, isDark }) {
             fontFamily: 'monospace',
             fontSize: 12,
             fontWeight: 700,
-            letterSpacing: '0.05em',
             color: ok
               ? isDark
                 ? 'rgba(150,210,255,0.95)'
@@ -385,13 +377,8 @@ function Notification({ status, type, onClose, isDark }) {
           background: 'none',
           border: 'none',
           cursor: 'pointer',
-          color: ok
-            ? isDark
-              ? 'rgba(100,170,255,0.7)'
-              : 'rgba(0,60,160,0.55)'
-            : 'rgba(255,80,80,0.7)',
+          color: 'rgba(150,150,255,0.7)',
           fontSize: 16,
-          lineHeight: 1,
         }}
       >
         ✕
@@ -400,9 +387,6 @@ function Notification({ status, type, onClose, isDark }) {
   );
 }
 
-/* ══════════════════════════════════════════════
-   NEON INPUT — no Tailwind interference
-══════════════════════════════════════════════ */
 function NeonInput({
   label,
   type = 'text',
@@ -423,18 +407,20 @@ function NeonInput({
     padding: '10px 12px',
     borderRadius: 5,
     outline: 'none',
+    zIndex: 50,
+    /* SIN backdropFilter — era el culpable */
     background: isDark
       ? focused
-        ? 'rgba(0,15,45,0.9)'
-        : 'rgba(0,8,28,0.80)'
+        ? 'rgba(0,15,45,0.95)'
+        : 'rgba(0,8,28,0.90)'
       : focused
-        ? 'rgba(230,240,255,0.95)'
-        : 'rgba(245,249,255,0.88)',
+        ? 'rgba(220,235,255,0.98)'
+        : 'rgba(240,246,255,0.95)',
     border: `1px solid ${focused ? (isDark ? 'rgba(0,140,255,0.65)' : 'rgba(0,80,220,0.55)') : isDark ? 'rgba(0,80,200,0.22)' : 'rgba(0,60,190,0.18)'}`,
     color: isDark ? 'rgba(185,220,255,0.92)' : 'rgba(10,30,90,0.88)',
     boxShadow: focused
       ? isDark
-        ? '0 0 14px rgba(0,120,255,0.22),0 0 30px rgba(0,100,255,0.10),inset 0 0 8px rgba(0,60,180,0.06)'
+        ? '0 0 14px rgba(0,120,255,0.22)'
         : '0 2px 12px rgba(0,80,200,0.10)'
       : 'none',
     transition: 'border 0.25s,box-shadow 0.25s,background 0.25s',
@@ -473,6 +459,7 @@ function NeonInput({
           onBlur={() => setFocused(false)}
           required
           style={inputStyle}
+          className="z-index-9999"
         />
       ) : (
         <input
@@ -492,16 +479,12 @@ function NeonInput({
           background: `linear-gradient(90deg,transparent,${accent},transparent)`,
           opacity: focused ? (isDark ? 0.8 : 0.5) : 0,
           transition: 'opacity 0.25s',
-          boxShadow: focused && isDark ? `0 0 6px ${accent}` : 'none',
         }}
       />
     </div>
   );
 }
 
-/* ══════════════════════════════════════════════
-   GLITCH TITLE — span wrapper, gradient on span only
-══════════════════════════════════════════════ */
 function GlitchTitle({ isDark }) {
   const [glitch, setGlitch] = useState(false);
   const [off, setOff] = useState({ x: 0, sk: 0 });
@@ -561,9 +544,6 @@ function GlitchTitle({ isDark }) {
   );
 }
 
-/* ══════════════════════════════════════════════
-   CARD HEADING — plain color, NO background-clip
-══════════════════════════════════════════════ */
 function CardHeading({ children, isDark }) {
   return (
     <h2
@@ -574,7 +554,6 @@ function CardHeading({ children, isDark }) {
         letterSpacing: '0.22em',
         textTransform: 'uppercase',
         margin: '0 0 20px',
-        /* Plain text color — no background, no clip, no fill */
         color: isDark ? '#55aaff' : '#0033cc',
         textShadow: isDark ? '0 0 12px rgba(0,130,255,0.7)' : 'none',
         background: 'none',
@@ -585,9 +564,7 @@ function CardHeading({ children, isDark }) {
   );
 }
 
-/* ══════════════════════════════════════════════
-   BASE CARD SHELL
-══════════════════════════════════════════════ */
+/* BaseCard — SIN backdropFilter, background más sólido */
 function BaseCard({ children, isDark, style = {} }) {
   return (
     <div
@@ -595,9 +572,10 @@ function BaseCard({ children, isDark, style = {} }) {
         position: 'relative',
         borderRadius: 8,
         padding: '24px 28px',
-        background: isDark ? 'rgba(0,10,32,0.84)' : 'rgba(245,249,255,0.91)',
+        /* background más opaco para compensar la falta de blur */
+        background: isDark ? 'rgba(0,8,24,0.96)' : 'rgba(242,247,255,0.98)',
         border: `1px solid ${isDark ? 'rgba(0,90,220,0.20)' : 'rgba(0,60,190,0.16)'}`,
-        backdropFilter: 'blur(16px)',
+        /* SIN backdropFilter — era el que rompía el stacking context */
         boxShadow: isDark
           ? '0 4px 22px rgba(0,0,0,0.55)'
           : '0 2px 14px rgba(0,50,160,0.08)',
@@ -646,9 +624,6 @@ function BaseCard({ children, isDark, style = {} }) {
   );
 }
 
-/* ══════════════════════════════════════════════
-   CONTACT PAGE
-══════════════════════════════════════════════ */
 const Contact = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -739,7 +714,7 @@ const Contact = () => {
         style={{
           position: 'fixed',
           inset: 0,
-          zIndex: 1,
+          zIndex: 0,
           pointerEvents: 'none',
           background: isDark
             ? 'radial-gradient(ellipse at 20% 35%,rgba(0,60,200,0.12) 0%,transparent 55%)'
@@ -846,7 +821,7 @@ const Contact = () => {
             }}
           >
             {/* FORM */}
-            <BaseCard isDark={isDark}>
+            <BaseCard isDark={isDark} style={{ zIndex: 9999 }}>
               <CardHeading isDark={isDark}>Send a Message</CardHeading>
               <form
                 onSubmit={handleSubmit}
@@ -897,7 +872,7 @@ const Contact = () => {
                     border: `1px solid ${isDark ? 'rgba(0,130,255,0.55)' : 'rgba(0,80,200,0.42)'}`,
                     color: isDark ? '#a0d8ff' : '#003dcc',
                     boxShadow: isDark
-                      ? '0 0 12px rgba(0,100,255,0.25),inset 0 0 10px rgba(0,60,180,0.08)'
+                      ? '0 0 12px rgba(0,100,255,0.25)'
                       : 'none',
                     transition: 'all 0.22s',
                     opacity: sending ? 0.65 : 1,
@@ -944,9 +919,6 @@ const Contact = () => {
                           border: `1px solid ${T.iconBorder}`,
                           fontSize: 14,
                           color: isDark ? '#55aaff' : '#0033cc',
-                          boxShadow: isDark
-                            ? '0 0 8px rgba(0,100,255,0.2)'
-                            : 'none',
                         }}
                       >
                         {icon}
@@ -981,17 +953,15 @@ const Contact = () => {
                 </div>
               </BaseCard>
 
-              {/* Available */}
               <div
                 style={{
                   position: 'relative',
                   borderRadius: 8,
                   padding: '20px 24px',
                   background: isDark
-                    ? 'rgba(0,40,140,0.15)'
-                    : 'rgba(220,235,255,0.60)',
+                    ? 'rgba(0,35,120,0.92)'
+                    : 'rgba(215,232,255,0.98)',
                   border: `1px solid ${isDark ? 'rgba(0,100,255,0.25)' : 'rgba(0,70,200,0.18)'}`,
-                  backdropFilter: 'blur(14px)',
                 }}
               >
                 <div
@@ -1013,7 +983,6 @@ const Contact = () => {
                       animation: 'snPulse 2s ease-in-out infinite alternate',
                     }}
                   />
-                  {/* Plain color text — no gradient */}
                   <span
                     style={{
                       fontFamily: 'monospace',

@@ -8,11 +8,6 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import dynamic from 'next/dynamic';
 import * as THREE from 'three';
 
-const ParticleBackground = dynamic(
-  () => import('@/app/components/ParticleBackground'),
-  { ssr: false }
-);
-
 /* ══════════════════════════════════════════════
    BLUE FLAME SHADERS — same structure as fire
    but palette shifted to supernova blue
@@ -380,10 +375,6 @@ function NavLink({ href, label, index, phase, isDark, onClick }) {
   const offset = index * 0.18;
   const color = neonHSL(phase, offset, !isDark);
   const colorB = neonHSL(phase, offset + 0.5, !isDark);
-  const ParticleBackground = dynamic(
-    () => import('@/app/components/ParticleBackground'),
-    { ssr: false }
-  );
 
   return (
     <li style={{ listStyle: 'none' }}>
@@ -540,7 +531,7 @@ function MobileMenu({ isOpen, onClose, phase, isDark }) {
         top: 0,
         left: 0,
         right: 0,
-        zIndex: 998,
+        zIndex: 8,
         /* Expand from top */
         maxHeight: isOpen ? '100vh' : '0px',
         overflow: 'hidden',
@@ -719,11 +710,10 @@ function Navbar() {
 
   return (
     <>
-      <ParticleBackground />
       <nav
         style={{
           position: 'relative',
-          zIndex: 999,
+          zIndex: 1,
           padding: '10px 20px',
           background: scrolled
             ? isDark

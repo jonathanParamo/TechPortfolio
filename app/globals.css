@@ -8,6 +8,19 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+canvas {
+  pointer-events: none !important;
+}
+
+[data-engine='three.js r169'] {
+  pointer-events: none !important;
+}
+
+canvas + div,
+canvas ~ div {
+  pointer-events: none !important;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
